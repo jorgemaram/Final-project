@@ -10,8 +10,9 @@ const bookSchema = new Schema({
 
     genre: {
         type: String,
-        enum: ["Ciencia Ficción", "Novela negra", "Aventuras", "Misterio", "Infantiles", "Románticas", "Terror"],
+        enum: ["Ciencia Ficción", "Novela negra", "Aventuras", "Misterio", "Infantil", "Romántico", "Terror", "Otro"],
         required: true,
+        default: "Otro"
     },
 
     resume: {
