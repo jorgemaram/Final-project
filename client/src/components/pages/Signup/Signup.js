@@ -8,11 +8,12 @@ class Signup extends Component {
     constructor() {
         super()
         this.state = {
+            username: '',
+            password: '',
             name: '',
             birthday: '',
             gender: '',
-            username: '',
-            password: ''
+            inage:'',
         }
         this.authService = new AuthService()
 
