@@ -13,7 +13,7 @@ class BookForm extends Component {
             genre: '',
             resume: '',
             image: '',
-            //author: this.props.loggedUser ? this.props.loggedUser._id : ''
+            author: this.props.loggedInUser ? this.props.loggedInUser._id : ''
         }
         this.booksService = new BooksService()
     }
