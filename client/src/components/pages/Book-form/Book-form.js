@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BooksService from './../../../service/book.service'
+import { Link } from 'react-router-dom'
 
 import { Form, Button } from 'react-bootstrap'
 
@@ -11,9 +12,8 @@ class BookForm extends Component {
             title: '',
             genre: '',
             resume: '',
-            chapters: [],
             image: '',
-            author: this.props.loggedUser ? this.props.loggedUser._id : ''
+            //author: this.props.loggedUser ? this.props.loggedUser._id : ''
         }
         this.booksService = new BooksService()
     }
@@ -21,13 +21,14 @@ class BookForm extends Component {
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
 
     handleSubmit = e => {
+
         e.preventDefault()
 
         this.booksService
             .saveBook(this.state)
             .then(res => {
                 this.props.updateList()
-                this.props.closeModal()
+                this.props.history.push('/libros')
             })
             .catch(err => console.log(err))
     }
@@ -51,9 +52,19 @@ class BookForm extends Component {
                     </Form.Group>
                     <Form.Group controlId="length">
                         <Form.Label>Género</Form.Label>
-                        <Form.Control type="number" name="genre" value={this.state.genre} onChange={this.handleInputChange} />
+                        <Form.Control as="select" defaultValue="Elige una opción" name="genre" value={this.state.genre} onChange={this.handleInputChange} >
+                            <option>Elige una opción</option>
+                            <option>Aventuras</option>
+                            <option>Ciencia Ficción</option>
+                            <option>Infantil</option>
+                            <option>Misterio</option>
+                            <option>Novela negra</option>
+                            <option>Romántico</option>
+                            <option>Terror</option>
+                            <option>Otro</option>
+                        </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="imageUrl">
+                    <Form.Group controlId="image">
                         <Form.Label>Imagen (URL)</Form.Label>
                         <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
                     </Form.Group>

@@ -5,12 +5,13 @@ import React, { Component } from 'react'
 
 import { Switch, Route } from 'react-router-dom'
 
+import AuthServices from './../service/auth.service'
 import BookList from './pages/Book-list/Books-list'
 import BookDetails from './pages/Book-details/Book-details'
 import BookForm from './pages/Book-form/Book-form'
-import Signup from './pages/Signup/Signup'
+import Home from './pages/Home'
 import Navbar from './layout/navbar/Navbar'
-import AuthServices from './../service/auth.service'
+import Signup from './pages/Signup/Signup'
 
 class App extends Component {
   constructor() {
@@ -38,10 +39,11 @@ class App extends Component {
         <Navbar />
         <main>
           <Switch>
+            <Route path="/" exact render={() => <Home />} />
             <Route path="/registro" render={props => <Signup storeUser={this.setTheUser} {...props} />} />
             <Route path="/libros" exact render={() => <BookList/>} />
             <Route path="/libros/:book_id" render={props => <BookDetails {...props} />} />
-            <Route path="/crear" render={() => <BookForm />} />
+            <Route path="/crear" render={props => <BookForm {...props}/> } />
           </Switch>
         </main>
       </>

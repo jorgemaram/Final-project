@@ -5,12 +5,12 @@ export default class BookService {
     constructor() {
         this.apiHandler = axios.create({
             baseURL: 'http://localhost:5000/api/books',
-            withCredentials: true
+            //withCredentials: true
         })
     }
 
     getBooks = () => this.apiHandler.get('/getAllBooks')
-    getBook = bookId => this.apiHandler.get(`/getOneBook/${bookId}`)
+    getBook = bookId => this.apiHandler.get(`/bookDetails/${bookId}`)
     saveBook = bookInfo => this.apiHandler.post('/newBook/', bookInfo)
     editBook = bookId => this.apiHandler.get(`/editBook/${bookId}`)
     deleteBook = bookId => this.apiHandler.get(`/deleteBook/${bookId}`)

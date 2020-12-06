@@ -14,17 +14,18 @@ class BookDetails extends Component {
     constructor() {
         super()
         this.state = {
-            book: undefined
+            book: []
         }
         this.bookService = new BooksService()
     }
-
+    
     componentDidMount = () => {
-
+        
+        
         const book_id = this.props.match.params.book_id
-
+        
         this.bookService
-            .getBook(book_id)
+        .getBook(book_id)
             .then(res => this.setState({ book: res.data }))
             .catch(err => console.log(err))
     }
