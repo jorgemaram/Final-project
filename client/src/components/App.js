@@ -13,7 +13,6 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
 import Navbar from './layout/navbar/Navbar'
-import Signup from './pages/Signup/Signup'
 import Home from './pages/Home'
 
 class App extends Component {
