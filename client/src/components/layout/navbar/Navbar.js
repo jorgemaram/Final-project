@@ -21,6 +21,9 @@ const navbar = () => {
                         <NavDropdown.Item href="#action/3.2">Eventos</NavDropdown.Item>
 
                     </NavDropdown>
+                    <Link to="/perfil">
+                        <Nav.Link as="div">Perfil</Nav.Link>
+                    </Link>
                     <Link to="/registro">
                         <Nav.Link as="div">Registro</Nav.Link>
                     </Link>
