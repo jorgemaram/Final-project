@@ -3,7 +3,7 @@ import BooksService from '../../../service/book.service'
 
 import BookCard from './Book-card'
 //aquí si hay spinner
-// import BookForm from './../Book-form/Book-form'
+import BookForm from './../Book-form/Book-form'
 
 import { Container, Row, Button, Modal } from 'react-bootstrap'
 
@@ -49,6 +49,8 @@ class BookList extends Component {
                         {this.state.books.map(elm => <BookCard key={elm._id} {...elm}  />)}
                         {/* loggedUser={this.props.loggedUser} */}
                     </Row>
+
+                    
                 </Container>
 
                 {/* <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>

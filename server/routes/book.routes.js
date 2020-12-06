@@ -13,7 +13,7 @@ router.get('/getAllBooks', (req, res) => {
 })
 
 
-router.get('/getOneBook/:book_id', (req, res) => {
+router.get('/bookDetails/:book_id', (req, res) => {
 
     if (!mongoose.Types.ObjectId.isValid(req.params.book_id)) {
         res.status(404).json({ message: 'Invalid ID' })
