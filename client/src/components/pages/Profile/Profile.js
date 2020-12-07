@@ -1,35 +1,62 @@
+import React, { Component } from 'react'
 import './Profile.css'
-import { Container, Row, Col} from 'react-bootstrap'
+import AuthService from '../../../service/auth.service'
+import { Container, Row, Col, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const Profile = ({ loggedUser }) => {
 
-    
-    return (
-        <Container>
-            <h1>¡Bienvenid@, {loggedUser.username}!</h1>
-            <hr></hr>
-            <Row>
-                <Col md={6}>
+class Profile extends Component  {
 
-            <img src={loggedUser.image} alt="profile-image"></img>
+    constructor(props) {
+        super(props)
+        this.state = {
+            user: []
+        }
 
-                </Col>
+        this.authService = new AuthService()
+        console.log(props)
+    }
 
-                <Col md={6}>
+    deleteThisUser = () => {
 
-            <h2>Datos del perfil: </h2>
-            <p>Nombre: {loggedUser.name}</p>
-                    <p>Tu fecha de nacimiento es: {loggedUser.birthday}!</p>
+        console.log(this.props)
+        const userID = this.props.loggedUser._id
 
-                    <Link to={`/editar-perfil/${loggedUser._id}`}>Editar perfil</Link>
-                    <br></br>
-                    <Link to={`/eliminar-perfil/${loggedUser._id}`}>Eliminar perfil</Link>
+        this.authService
+            .deleteUser(userID)
+            .then(res => { this.props.history.push('/') })
+            .catch(err => console.log(err))
+
+    }
+
+    render() {
+
+        return (
+            <Container>
+                <h1>¡Bienvenid@, {this.props.loggedUser.username}!</h1>
+                <hr></hr>
+                <Row>
+                    <Col md={6}>
+
+                        <img src={this.props.loggedUser.image} alt="profile-image"></img>
+
+                    </Col>
+
+                    <Col md={6}>
+
+                        <h2>Datos del perfil: </h2>
+                        <p>Nombre: {this.props.loggedUser.name}</p>
+                        <p>Tu fecha de nacimiento es: {this.props.loggedUser.birthday}!</p>
+
+                        <Link to={`/editar-perfil/${this.props.loggedUser._id}`}>Editar perfil</Link>
+                        <br></br>
+                        <Button onClick={() => this.deleteThisUser()} className="btn btn-sm btn-danger">Borrar perfil</Button>
                     
-                </Col>
-            </Row>
-        </Container>
-    )
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 export default Profile

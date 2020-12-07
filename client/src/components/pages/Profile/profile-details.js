@@ -21,10 +21,10 @@ class ProfileEdit extends Component {
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
 
-    componentDidUpdate = 
 
     handleSubmit = e => {
    
+
         e.preventDefault()
 
         this.authService
