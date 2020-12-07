@@ -8,8 +8,11 @@ export default class AuthService {
         })
     }
 
+    getAllUser = () => this.apiHandler.get('/getAllUser')
     signup = credentials => this.apiHandler.post('/signup', credentials)
     login = credentials => this.apiHandler.post('/login', credentials)
     logout = () => this.apiHandler.post('/logout')
     isLoggedIn = () => this.apiHandler.get('/loggedin')
+    editUser = (userId, user) => this.apiHandler.put(`/editUser/${userId}`, user)
+    deleteUser = userId => this.apiHandler.delete(`/deleteUser/${userId}`)
 }

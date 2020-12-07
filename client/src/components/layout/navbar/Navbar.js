@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import './Navbar.css';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap' 
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import AuthService from './../../../service/auth.service'
 import { Link } from 'react-router-dom'
 
@@ -50,21 +50,24 @@ class navbar extends Component {
                         {
                             this.props.loggedUser
                                 ?
-                        <Nav.Link as="div" onClick={this.logOut}>Cerrar sesión</Nav.Link>      
+                                <Nav.Link as="div" onClick={this.logOut}>Cerrar sesión</Nav.Link>
                                 :
                                 <>
-                        <Link to="/registro">
-                            <Nav.Link as="div">Registro</Nav.Link>
-                        </Link>
-                        <Link to="/acceso-usuario">
-                            <Nav.Link as="div">Acceso Usuario</Nav.Link>
-                        </Link>
-                                
-                                
-                        <Link to="/perfil">
-                            <Nav.Link as="div">Perfil</Nav.Link>
+                                    <Link to="/registro">
+                                        <Nav.Link as="div">Registro</Nav.Link>
                                     </Link>
-                                    </>
+                                    <Link to="/acceso-usuario">
+                                        <Nav.Link as="div">Acceso Usuario</Nav.Link>
+                                    </Link>
+                                    <Link to="/eventos">
+                                        <Nav.Link as="div">Eventos</Nav.Link>
+                                    </Link>
+
+
+                                    <Link to="/perfil">
+                                        <Nav.Link as="div">Perfil</Nav.Link>
+                                    </Link>
+                                </>
                         }
                         <Link to="/perfil">
                             <Nav.Link as="div">Hola, {this.props.loggedUser ? this.props.loggedUser.username : 'invitado'}</Nav.Link>

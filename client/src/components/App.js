@@ -12,9 +12,12 @@ import BookForm from './pages/Book-form/Book-form'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
+import ProfileDetails from './pages/Profile/profile-details'
+import Events from './pages/Events/events'
 import Navbar from './layout/navbar/Navbar'
 import Home from './pages/Home'
 import Footer from './layout/footer/Footer'
+
 
 class App extends Component {
 
@@ -39,7 +42,7 @@ class App extends Component {
   }
 
 
-  setTheUser = user => this.setState({ loggedInUser: user }, () => console.log(user))
+  setTheUser = user => this.setState({ loggedInUser: user })
 
 
   render() {
@@ -49,9 +52,6 @@ class App extends Component {
         
 
         <Navbar storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
-        <footer>
-          <Footer />
-        </footer>
       
         <main>
           <Switch>
@@ -59,12 +59,17 @@ class App extends Component {
             <Route path="/registro" render={props => <Signup storeUser={this.setTheUser} {...props} />} />
             <Route path="/acceso-usuario" render={props => <Login storeUser={this.setTheUser} {...props} />} />
             <Route path="/perfil" render={() => this.state.loggedInUser ? <Profile loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
-            <Route path="/libros" exact render={() => <BookList/>} />
+            <Route path="/editar-perfil/:user_id" render={props => this.state.loggedInUser ? <ProfileDetails {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />            <Route path="/libros" exact render={() => <BookList />} />
+            <Route path="/eventos" exact render={() => <Events />} />
             <Route path="/libros/:book_id" render={props => <BookDetails {...props} />} />
             <Route path="/libros/editar/:book_id" render={props => <BookDetails {...props} />} />
             <Route path="/crear" render={props => <BookForm {...props}/> } />
           </Switch>
         </main>
+
+        <footer>
+          <Footer />
+        </footer>
       </>
     )
   }
