@@ -46,7 +46,13 @@ class App extends Component {
 
     return (
       <>
-        <Navbar />
+        
+
+        <Navbar storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
+        <footer>
+          <Footer />
+        </footer>
+      
         <main>
           <Switch>
             <Route path="/" exact render={() => <Home />} />
@@ -58,7 +64,6 @@ class App extends Component {
             <Route path="/crear" render={props => <BookForm {...props}/> } />
           </Switch>
         </main>
-        <Footer />
       </>
     )
   }

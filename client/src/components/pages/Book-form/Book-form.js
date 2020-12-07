@@ -13,7 +13,7 @@ class BookForm extends Component {
             genre: '',
             resume: '',
             image: '',
-            author: this.props.loggedInUser ? this.props.loggedInUser._id : ''
+         //   author: this.props.loggedInUser ? this.props.loggedInUser._id : ''
         }
         this.booksService = new BooksService()
     }
@@ -28,7 +28,7 @@ class BookForm extends Component {
             .saveBook(this.state)
             .then(res => {
                 this.props.updateList()
-                this.props.history.push('/libros')
+               // this.props.history.push('/libros')
             })
             .catch(err => console.log(err))
     }

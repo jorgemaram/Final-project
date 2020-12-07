@@ -12,8 +12,6 @@ class Signup extends Component {
             password: '',
             name: '',
             birthday: '',
-            gender: '',
-            inage:'',
         }
         this.authService = new AuthService()
 
@@ -27,7 +25,9 @@ class Signup extends Component {
 
         this.authService
             .signup(this.state)
-            .then(theLoggedInUser => {console.log(theLoggedInUser)
+            .then(theLoggedInUser => {
+                this.props.storeUser(theLoggedInUser.data)
+                this.props.history.push('/perfil')
             })
             .catch(err => console.log('Error', err))
     }
@@ -62,9 +62,10 @@ class Signup extends Component {
                             </Form.Group>
                             <Form.Group controlId="gender">
                                 <Form.Label>Género</Form.Label>
-                                <Form.Control as="select" defaultValue="Choose..." name="gender" value={this.state.gender} onChange={this.handleInputChange} >
+                                <Form.Control as="select" defaultValue="Elige una opción" name="gender" value={this.state.gender} onChange={this.handleInputChange} >
+                                    <option>Elige una opción</option>
                                     <option>Hombre</option>
-                                    <option>Mujer</option>
+                                    <option>Femenino</option>
                                     <option>Otro</option>
                                 </Form.Control>
                             </Form.Group>
