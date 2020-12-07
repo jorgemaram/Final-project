@@ -9,6 +9,7 @@ import AuthServices from './../service/auth.service'
 import BookList from './pages/Book-list/Books-list'
 import BookDetails from './pages/Book-details/Book-details'
 import BookForm from './pages/Book-form/Book-form'
+import BookEditForm from './pages/Book-edit-form/Book-edit-form'
 import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
@@ -60,9 +61,9 @@ class App extends Component {
             <Route path="/acceso-usuario" render={props => <Login storeUser={this.setTheUser} {...props} />} />
             <Route path="/perfil" render={() => this.state.loggedInUser ? <Profile loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/libros" exact render={() => <BookList/>} />
-            <Route path="/libros/:book_id" render={props => <BookDetails {...props} />} />
-            <Route path="/libros/editar/:book_id" render={props => <BookDetails {...props} />} />
-            <Route path="/crear" render={props => <BookForm {...props}/> } />
+            <Route path="/libros/editar/:book_id" render={props => this.state.loggedInUser ? <BookEditForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />}/>
+            <Route path="/libros/:book_id" exact render={props => <BookDetails {...props} />} />
+            <Route path="/crear" render={props => this.state.loggedInUser ? <BookForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
           </Switch>
         </main>
       </>
