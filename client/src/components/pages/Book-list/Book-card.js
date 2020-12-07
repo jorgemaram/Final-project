@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import './Book-card.css'
 
 const BookCard = props => {
-    console.log(props)
+
     return (
         <Col lg={4}>
             <Card className="book-card">

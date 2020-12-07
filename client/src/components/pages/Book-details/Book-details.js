@@ -33,11 +33,9 @@ class BookDetails extends Component {
     deleteThisBook = () => {
         const book_id = this.props.match.params.book_id
 
-        console.log('hola boton de eliminar')
         this.bookService
-            .then(res => {
-                this.props.history.push('/libros')
-            })
+            .deleteBook(book_id)
+            .then(res => this.props.history.push('/libros'))
             .catch(err => console.log(err))
         
     }

@@ -7,13 +7,27 @@ class BookForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: '',
-            genre: '',
-            resume: '',
+            title: this.props.title,
+            genre: this.props.genre,
+            resume: this.props.resume,
             author: this.props.loggedUser._id
         }
         this.booksService = new BooksService()
-        console.log(this.props)
+        console.log(props)
+    }
+
+    componentDidMount = () => {
+
+
+        const book_id = this.props.match.params.book_id
+
+        this.booksService
+            .getBook(book_id)
+            .then(res => {
+                this.setState({ book: res.data })
+            console.log(this.state)
+            })
+            .catch(err => console.log(err))
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -23,6 +37,7 @@ class BookForm extends Component {
         e.preventDefault()
 
         this.booksService
+
             .editBook(this.state)
             .then(res => {
                 this.props.history.push('/libros')
@@ -65,7 +80,7 @@ class BookForm extends Component {
                             <Form.Label>Imagen (URL)</Form.Label>
                             <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
                         </Form.Group>
-                        <Button variant="dark" type="submit">Crear nuevo libro</Button>
+                        <Button variant="dark" type="submit">Edita tu libro</Button>
                     </Form>
                 </Container>
             </>
