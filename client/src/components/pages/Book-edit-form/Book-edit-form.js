@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Form, Button } from 'react-bootstrap'
 import BooksService from './../../../service/book.service'
+import { Container, Form, Button } from 'react-bootstrap'
 
 class BookForm extends Component {
 
@@ -13,6 +13,7 @@ class BookForm extends Component {
             author: this.props.loggedUser._id
         }
         this.booksService = new BooksService()
+        console.log(this.props)
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -22,9 +23,8 @@ class BookForm extends Component {
         e.preventDefault()
 
         this.booksService
-            .saveBook(this.state)
+            .editBook(this.state)
             .then(res => {
-                console.log(this.props)
                 this.props.history.push('/libros')
             })
             .catch(err => console.log(err))
@@ -36,7 +36,7 @@ class BookForm extends Component {
         return (
             <>
                 <Container>
-                    <h1> Nuevo libro</h1>
+                    <h1> Editar {this.props.title}</h1>
                     <hr />
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="title">

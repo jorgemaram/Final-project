@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-import BooksService from '../../../service/book.service'
-
-import BookCard from './Book-card'
-//aquí si hay spinner
-import BookForm from './../Book-form/Book-form'
-
 import { Container, Row, Button, Modal } from 'react-bootstrap'
 
+import BooksService from '../../../service/book.service'
+import BookCard from './Book-card'
 
 import './Books-list.css'
 
@@ -16,7 +12,6 @@ class BookList extends Component {
         super()
         this.state = {
             books: [],
-            //showModal: false
         }
         this.booksService = new BooksService()
     }
@@ -34,8 +29,6 @@ class BookList extends Component {
             .catch(err => console.log(err))
     }
 
-    //handleModal = visible => this.setState({ showModal: visible })
-
     render() {
         return (
             <>
@@ -47,17 +40,10 @@ class BookList extends Component {
 
                     <Row>
                         {this.state.books.map(elm => <BookCard key={elm._id} {...elm}  />)}
-                        {/* loggedUser={this.props.loggedUser} */}
                     </Row>
 
                     
                 </Container>
-
-                {/* <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                    <Modal.Body>
-                        <BookForm closeModal={() => this.handleModal(false)} updateList={this.refreshBooks} loggedUser={this.props.loggedUser} />
-                    </Modal.Body>
-                </Modal> */}
             </>
         )
     }

@@ -12,7 +12,7 @@ export default class BookService {
     getBooks = () => this.apiHandler.get('/getAllBooks')
     getBook = bookId => this.apiHandler.get(`/bookDetails/${bookId}`)
     saveBook = bookInfo => this.apiHandler.post('/newBook/', bookInfo)
-    editBook = bookId => this.apiHandler.get(`/editBook/${bookId}`)
-    deleteBook = bookId => this.apiHandler.get(`/deleteBook/${bookId}`)
+    editBook = bookId => this.apiHandler.put(`/editBook/${bookId}`)
+    deleteBook = bookId => this.apiHandler.delete(`/deleteBook/${bookId}`)
 
 }
