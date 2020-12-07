@@ -16,7 +16,6 @@ const userSchema = new Schema({
     gender: {
         type: String,
         enum: ["Masculino", "Femenino", "Otro"],
-        required: true,
         default: "Otro"
     },
     image: {
