@@ -31,6 +31,7 @@ class BookDetails extends Component {
     }
 
     deleteThisBook = () => {
+
         const book_id = this.props.match.params.book_id
 
         this.bookService

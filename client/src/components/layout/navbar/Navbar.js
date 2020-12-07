@@ -59,9 +59,6 @@ class navbar extends Component {
                                     <Link to="/acceso-usuario">
                                         <Nav.Link as="div">Acceso Usuario</Nav.Link>
                                     </Link>
-                                    <Link to="/eventos">
-                                        <Nav.Link as="div">Eventos</Nav.Link>
-                                    </Link>
 
 
                                     <Link to="/perfil">
@@ -69,10 +66,13 @@ class navbar extends Component {
                                     </Link>
                                 </>
                         }
+                                    <Link to="/eventos">
+                                        <Nav.Link as="div">Eventos</Nav.Link>
+                                    </Link>
+
                         <Link to="/perfil">
                             <Nav.Link as="div">Hola, {this.props.loggedUser ? this.props.loggedUser.username : 'invitado'}</Nav.Link>
                         </Link>
-
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -23,6 +23,7 @@ class ProfileEdit extends Component {
 
     handleSubmit = e => {
    
+
         e.preventDefault()
 
         this.authService
