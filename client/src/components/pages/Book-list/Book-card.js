@@ -1,6 +1,7 @@
 import { Col, Card, ButtonGroup } from 'react-bootstrap'
-
 import { Link } from 'react-router-dom'
+
+import './Book-card.css'
 
 const BookCard = ({ title, image, _id }) => {
     return (

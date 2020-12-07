@@ -27,8 +27,9 @@ class BookForm extends Component {
         this.booksService
             .saveBook(this.state)
             .then(res => {
-                this.props.updateList()
+                console.log(this.props)
                 this.props.history.push('/libros')
+                //this.props.updateList()
             })
             .catch(err => console.log(err))
     }

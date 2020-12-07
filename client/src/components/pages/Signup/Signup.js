@@ -13,7 +13,7 @@ class Signup extends Component {
             name: '',
             birthday: '',
             gender: '',
-            inage:'',
+            image:'',
         }
         this.authService = new AuthService()
 
@@ -46,23 +46,23 @@ class Signup extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group controlId="username">
                                 <Form.Label>Nombre de Usuario</Form.Label>
-                                <Form.Control type="text" name="username" value={this.state.username} onChange={this.handleInputChange} />
+                                <Form.Control type="text" name="username" onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId="password">
                                 <Form.Label>Contraseña</Form.Label>
-                                <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
+                                <Form.Control type="password" name="password" onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId="name">
                                 <Form.Label>Nombre</Form.Label>
-                                <Form.Control type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
+                                <Form.Control type="text" name="name" onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId="birthday">
                                 <Form.Label>Fecha de nacimiento</Form.Label>
-                                <Form.Control type="date" name="birthday" value={this.state.birthday} onChange={this.handleInputChange} />
+                                <Form.Control type="date" name="birthday" onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId="gender">
                                 <Form.Label>Género</Form.Label>
-                                <Form.Control as="select" defaultValue="Choose..." name="gender" value={this.state.gender} onChange={this.handleInputChange} >
+                                <Form.Control as="select" defaultValue="Choose..." name="gender" onChange={this.handleInputChange} >
                                     <option>Hombre</option>
                                     <option>Mujer</option>
                                     <option>Otro</option>
@@ -70,7 +70,7 @@ class Signup extends Component {
                             </Form.Group>
                             <Form.Group controlId="image">
                                 <Form.Label>Imagen de perfil</Form.Label>
-                                <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
+                                <Form.Control type="text" name="image" onChange={this.handleInputChange} />
                             </Form.Group>
                             <Button variant="dark" type="submit">Registrarme</Button>
                         </Form>
