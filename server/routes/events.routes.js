@@ -17,11 +17,6 @@ router.get('/getAllEvents', (req, res) => {
 
 router.get('/eventDetails/:event_id', (req, res) => {
 
-    if (!mongoose.Types.ObjectId.isValid(req.params.event_id)) {
-        res.status(404).json({ message: 'Invalid ID' })
-        return
-    }
-
     Event
         .findById(req.params.event_id)
         .populate('author')

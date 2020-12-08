@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EventService from "../../../service/event.service"
 
-import { GoogleMap, withScriptjs, withGoogleMap } from 'react-google-maps';
+import { GoogleMap, withScriptjs, withGoogleMap, Marker} from 'react-google-maps';
 
 
 class Maps extends Component {
@@ -21,29 +21,21 @@ class Maps extends Component {
 
     }
   
-    // componentDidMount = () => {
-    //     this.refreshEvents()
-    // }
-
-    // refreshEvents = () => {
-
-
-    //     this.eventService
-    //         .getOneEvent()
-    //         .then(res => {  this.setState({ events: res.data })  })
-    //         .catch(err => console.log(err))
-    // }
-
+    
     render() {
         
-        return (
 
+        return (
+<>
             <GoogleMap
-            
                 defaultZoom={15}
                 defaultCenter={{ lat: parseFloat(this.props.latitude), lng: parseFloat(this.props.longitude) }}
-            
             />
+            <Marker 
+                    position={{ lat: parseFloat(this.props.latitude), lng: parseFloat(this.props.longitude) }}
+                    name={this.props.name}
+                />
+</>
         )
     }
 }

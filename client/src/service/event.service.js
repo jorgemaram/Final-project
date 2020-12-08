@@ -12,7 +12,7 @@ export default class EventService {
     getEvent = () => this.apiHandler.get('/getAllEvents')
     getOneEvent = eventId => this.apiHandler.get(`/eventDetails/${eventId}`)
     newEvent = eventInfo => this.apiHandler.post('/newEvent/', eventInfo)
-    editEvent = eventId => this.apiHandler.put(`/editEvent/${eventId}`)
+    editEvent = (eventId, event) => this.apiHandler.put(`/editEvent/${eventId}`, event)
     deleteEvent = eventId => this.apiHandler.delete(`/deleteEvent/${eventId}`)
 
 }

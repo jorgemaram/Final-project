@@ -7,39 +7,41 @@ class EventEditForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name: this.props.name,
-            description: this.props.description,
-            place: this.props.place,
-            capacity: this.props.capacity,
-            date: this.props.date,
-            author: this.props.loggedUser._id
+            event: {
+                name: "",
+                description: "",
+                place: "",
+                latitude: "",
+                longitude: "",
+                capacity: "",
+                date: "",
+                author: "",
+            }
         }
-        console.log(props)
         this.eventService = new EventService()
     }
 
     componentDidMount = () => {
 
-
-        const event_id = this.props.match.params.event_id 
+        const event_id = this.props.match.params.event_id
 
         this.eventService
-            .getEvent(event_id)
-            .then(res => {
-                this.setState({ event: res.data })
-            })
+            .getOneEvent(event_id)
+            .then(res => this.setState({ event: res.data }))
             .catch(err => console.log(err))
     }
 
-    handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
+    handleInputChange = e => this.setState({ event: { ...this.state.event, [e.target.name]: e.target.value } })
 
     handleSubmit = e => {
 
+        const event_id = this.props.match.params.event_id
+
         e.preventDefault()
+  
 
         this.eventService
-
-            .editEvent(this.state)
+            .editEvent(event_id, this.state.event,)
             .then(res => {
                 this.props.history.push('/eventos')
             })
@@ -59,23 +61,31 @@ class EventEditForm extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="name">
                             <Form.Label>Nombre</Form.Label>
-                            <Form.Control type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
+                            <Form.Control type="text" name="name" value={this.state.event.name} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Form.Group controlId="description">
                             <Form.Label>Descripción del evento</Form.Label>
-                            <Form.Control as="textarea" rows={3} type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
+                            <Form.Control as="textarea" rows={3} type="text" name="description" value={this.state.event.description} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Form.Group controlId="place">
                             <Form.Label>Lugar de celebración</Form.Label>
-                            <Form.Control type="text" name="place" value={this.state.place} onChange={this.handleInputChange} />
+                            <Form.Control type="text" name="place" value={this.state.event.place} onChange={this.handleInputChange} />
+                        </Form.Group>
+                        <Form.Group controlId="latitude">
+                            <Form.Label>Latitud</Form.Label>
+                            <Form.Control type="text" name="latitude" value={this.state.event.latitude} onChange={this.handleInputChange} />
+                        </Form.Group>
+                        <Form.Group controlId="longitude">
+                            <Form.Label>Longitud</Form.Label>
+                            <Form.Control type="text" name="longitude" value={this.state.event.longitude} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Form.Group controlId="capacity">
                             <Form.Label>Aforo</Form.Label>
-                            <Form.Control type="number" name="capacity" value={this.state.capacity} onChange={this.handleInputChange} />
+                            <Form.Control type="number" name="capacity" value={this.state.event.capacity} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Form.Group controlId="date">
                             <Form.Label>Fecha (URL)</Form.Label>
-                            <Form.Control type="date" name="date" value={this.state.date} onChange={this.handleInputChange} />
+                            <Form.Control type="date" name="date" value={this.state.event.date} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Button variant="dark" type="submit">Editar evento</Button>
                     </Form>
