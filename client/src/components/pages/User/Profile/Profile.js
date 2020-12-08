@@ -46,7 +46,7 @@ class Profile extends Component  {
 
                         <h2>Datos del perfil: </h2>
                         <p>Nombre: {this.props.loggedUser.name}</p>
-                        <p>Tu fecha de nacimiento es: {this.props.loggedUser.birthday}!</p>
+                        <p>Tu fecha de nacimiento es: ({this.props.loggedUser.birthday})!</p>
 
                         <Link to={`/editar-perfil/${this.props.loggedUser._id}`}>Editar perfil</Link>
                         <br></br>

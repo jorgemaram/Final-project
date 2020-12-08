@@ -7,38 +7,37 @@ class BookForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: this.props.title,
-            genre: this.props.genre,
-            resume: this.props.resume,
-            author: this.props.loggedUser._id
+            book : {
+                title: '',
+                genre: '',
+                resume: '',
+            }
         }
-        this.booksService = new BooksService()
-        console.log(props)
+        this.bookService = new BooksService()
     }
 
     componentDidMount = () => {
 
         const book_id = this.props.match.params.book_id
 
-        this.booksService
+        this.bookService
             .getBook(book_id)
-            // .then(res => {
-            //     this.setState({ book: res.data })
-            //     console.log(book)
-            // })
+            .then(res => this.setState({ book: res.data }))
             .catch(err => console.log(err))
     }
 
-    handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
+    handleInputChange = e => this.setState({ book: {...this.state.book, [e.target.name]: e.target.value} })
 
     handleSubmit = e => {
 
         e.preventDefault()
+        console.log(this.state.book)
 
-        this.booksService
+        this.bookService
 
-            .editBook(this.state)
+            .editBook(this.state.book)
             .then(res => {
+                console.log(this.props)
                 this.props.history.push('/libros')
             })
             .catch(err => console.log(err))
@@ -55,15 +54,15 @@ class BookForm extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="title">
                             <Form.Label>Nombre</Form.Label>
-                            <Form.Control type="text" name="title" value={this.state.title} onChange={this.handleInputChange} />
+                            <Form.Control type="text" name="title" value={this.state.book.title} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Form.Group controlId="description">
                             <Form.Label>Descripción</Form.Label>
-                            <Form.Control type="text" name="resume" value={this.state.resume} onChange={this.handleInputChange} />
+                            <Form.Control type="text" name="resume" value={this.state.book.resume} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Form.Group controlId="length">
                             <Form.Label>Género</Form.Label>
-                            <Form.Control as="select" defaultValue="Elige una opción" name="genre" value={this.state.genre} onChange={this.handleInputChange} >
+                            <Form.Control as="select" defaultValue="Elige una opción" name="genre" value={this.state.book.genre} onChange={this.handleInputChange} >
                                 <option>Elige una opción</option>
                                 <option>Aventuras</option>
                                 <option>Ciencia Ficción</option>
@@ -77,7 +76,7 @@ class BookForm extends Component {
                         </Form.Group>
                         <Form.Group controlId="image">
                             <Form.Label>Imagen (URL)</Form.Label>
-                            <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange}/>
+                            <Form.Control type="text" name="image" value={this.state.book.image} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Button variant="dark" type="submit">Edita tu libro</Button>
                     </Form>

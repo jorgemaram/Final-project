@@ -51,7 +51,7 @@ class BookDetails extends Component {
 
         this.bookService
             .getBook(book_id)
-            .then(res => this.props.history.push(`/libros/${this.props._id}/nuevo-capitulo`))
+            .then(res => this.props.history.push(`/libros/${book_id}/nuevo-capitulo`))
             .catch(err => console.log(err))
 
     }
