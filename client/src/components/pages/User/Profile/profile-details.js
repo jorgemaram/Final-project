@@ -36,6 +36,8 @@ class ProfileEdit extends Component {
     }
 
 
+    
+
     render() {
 
         return (
@@ -46,7 +48,7 @@ class ProfileEdit extends Component {
                     <Col md={{ span: 6, offset: 3 }}>
                         <h1>Editar perfil</h1>
                         <hr />
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.handleSubmit} >
                             <Form.Group controlId="username">
                                 <Form.Label>Nombre de Usuario</Form.Label>
                                 <Form.Control type="text" name="username" value={this.state.username} onChange={this.handleInputChange} />
@@ -76,9 +78,8 @@ class ProfileEdit extends Component {
                                 <Form.Label>Imagen de perfil</Form.Label>
                                 <Form.Control type="text" name="image" onChange={this.handleInputChange} />
                             </Form.Group>
-                            <Button variant="dark" type="submit">Editar perfil</Button>
+                            <Button variant="dark" type="submit">Editar perfil</Button>    
 
-    
                         </Form>
                     </Col>
                 </Row>

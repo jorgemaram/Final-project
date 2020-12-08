@@ -28,6 +28,8 @@ class EventDetails extends Component {
             .catch(err => console.log(err))
     }
 
+
+    
     deleteEvent = () => {
 
         const event_id = this.props.match.params.event_id
