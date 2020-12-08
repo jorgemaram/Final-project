@@ -15,6 +15,9 @@ import Login from './pages/Login/Login'
 import Profile from './pages/Profile/Profile'
 import ProfileDetails from './pages/Profile/profile-details'
 import Events from './pages/Events/events'
+import EventDetails from './pages/Event-details/event-details'
+import EventsForm from './pages/Events/events-form'
+import EventEditForm from './pages/Event-edit-form/event-edit-form'
 import Navbar from './layout/navbar/Navbar'
 import Home from './pages/Home'
 import Footer from './layout/footer/Footer'
@@ -62,7 +65,10 @@ class App extends Component {
             <Route path="/perfil" render={() => this.state.loggedInUser ? <Profile loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/editar-perfil/:user_id" render={props => this.state.loggedInUser ? <ProfileDetails {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />            <Route path="/libros" exact render={() => <BookList />} />
             <Route path="/eventos" exact render={() => <Events />} />
-            <Route path="/libros" exact render={() => <BookList/>} />
+            <Route path="/eventos/nuevo-evento" render={props => this.state.loggedInUser ? <EventsForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
+            <Route path="/eventos/editar-evento/:event_id" render={props => this.state.loggedInUser ? <EventEditForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
+            <Route path="/eventos/:event_id" render={props => <EventDetails {...props} />} />
+            <Route path="/libros" exact render={() => <BookList />} />
             <Route path="/crear" render={props => this.state.loggedInUser ? <BookForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />} />
             <Route path="/libros/editar/:book_id" render={props => this.state.loggedInUser ? <BookEditForm {...props} loggedUser={this.state.loggedInUser} /> : <Redirect to="/acceso-usuario" />}/>
             <Route path="/libros/:book_id" render={props => <BookDetails {...props} />} />
