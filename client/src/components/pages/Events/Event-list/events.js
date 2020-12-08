@@ -53,6 +53,7 @@ class Events extends Component {
                                 loadingElement={<p>Cargando</p>}
                             />
                         </Col>
+    
                         <Col md={6}>
                             <ul>
                                 <h3>Próximos eventos</h3>
