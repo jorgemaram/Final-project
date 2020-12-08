@@ -11,6 +11,7 @@ class BookForm extends Component {
                 title: '',
                 genre: '',
                 resume: '',
+                author: ''
             }
         }
         this.bookService = new BooksService()
@@ -30,14 +31,15 @@ class BookForm extends Component {
 
     handleSubmit = e => {
 
+        const book_id = this.props.match.params.book_id
         e.preventDefault()
         console.log(this.state.book)
 
         this.bookService
 
-            .editBook(this.state.book)
+            .editBook(book_id, this.state.book,)
             .then(res => {
-                console.log(this.props)
+                console.log(this.state.book)
                 this.props.history.push('/libros')
             })
             .catch(err => console.log(err))
@@ -49,7 +51,7 @@ class BookForm extends Component {
         return (
             <>
                 <Container>
-                    <h1> Editar {this.props.title}</h1>
+                    <h1> Edita esta novela</h1>
                     <hr />
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="title">
