@@ -1,7 +1,7 @@
 import { Container, Row, Col} from 'react-bootstrap'
-import Credentials from "./../../../credential"
-import Maps from './../Maps/drawMaps'
-import EventService from './../../../service/event.service'
+import Credentials from "../../../../credential"
+import Maps from './../../Maps/drawMaps'
+import EventService from "../../../../service/event.service"
 import EventCard from './event-card'
 import { Link } from 'react-router-dom'
 import { Component } from 'react';

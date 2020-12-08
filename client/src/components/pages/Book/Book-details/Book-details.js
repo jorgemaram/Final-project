@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BooksService from '../../../service/book.service'
+import BooksService from '../../../../service/book.service'
 
 import './Book-details.css'
 

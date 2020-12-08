@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import EventService from '../../../service/event.service'
-import Maps from './../Maps/drawMaps'
-import Credentials from "./../../../credential"
+import EventService from "../../../../service/event.service"
+import Maps from '../../Maps/drawMaps'
+import Credentials from "../../../../credential"
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${Credentials.mapsKey}`;
