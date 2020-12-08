@@ -1,34 +1,20 @@
 import React, { Component } from 'react'
-import EventService from './../../../service/event.service'
 import { Container, Form, Button } from 'react-bootstrap'
+import EventService from "../../../../service/event.service"
 
-class EventEditForm extends Component {
+class EventForm extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            name: this.props.name,
-            description: this.props.description,
-            place: this.props.place,
-            capacity: this.props.capacity,
-            date: this.props.date,
+            name: '',
+            description: '',
+            place: '',
+            capacity: '',
+            date: '',
             author: this.props.loggedUser._id
         }
-        console.log(props)
         this.eventService = new EventService()
-    }
-
-    componentDidMount = () => {
-
-
-        const event_id = this.props.match.params.event_id 
-
-        this.eventService
-            .getEvent(event_id)
-            .then(res => {
-                this.setState({ event: res.data })
-            })
-            .catch(err => console.log(err))
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -38,9 +24,9 @@ class EventEditForm extends Component {
         e.preventDefault()
 
         this.eventService
-
-            .editEvent(this.state)
+            .newEvent(this.state)
             .then(res => {
+                console.log(this.props)
                 this.props.history.push('/eventos')
             })
             .catch(err => console.log(err))
@@ -51,10 +37,8 @@ class EventEditForm extends Component {
 
         return (
             <>
-                
-
                 <Container>
-                    <h1> Editar evento</h1>
+                    <h1> Nuevo evento</h1>
                     <hr />
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="name">
@@ -77,13 +61,16 @@ class EventEditForm extends Component {
                             <Form.Label>Fecha (URL)</Form.Label>
                             <Form.Control type="date" name="date" value={this.state.date} onChange={this.handleInputChange} />
                         </Form.Group>
-                        <Button variant="dark" type="submit">Editar evento</Button>
+                        <Button variant="dark" type="submit">Crear nuevo evento</Button>
                     </Form>
                 </Container>
-
             </>
         )
     }
 }
 
-export default EventEditForm
+export default EventForm
+
+
+
+

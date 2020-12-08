@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row } from 'react-bootstrap'
 
-import BooksService from '../../../service/book.service'
+import BooksService from '../../../../service/book.service'
 import BookCard from './Book-card'
 
 import './Books-list.css'

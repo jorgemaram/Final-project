@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Profile.css'
-import AuthService from '../../../service/auth.service'
+import AuthService from '../../../../service/auth.service'
 import { Container, Row, Col, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 

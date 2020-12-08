@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import AuthService from '../../../service/auth.service'
+import AuthService from '../../../../service/auth.service'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
