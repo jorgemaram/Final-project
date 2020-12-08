@@ -1,14 +1,16 @@
 const mongoose = require('mongoose')
 const User = require('../models/user.model')
-// const Book = require('../models/book.model')
+const Book = require('../models/book.model')
 const Event = require('../models/event.model')
+const Chapter = require('../models/chapter.model')
 
 const dbtitle = 'Proyecto-final'
 mongoose.connect(`mongodb://localhost/${dbtitle}`, { useUnifiedTopology: true, useNewUrlParser: true })
 
 User.collection.drop()
 Event.collection.drop()
-// Book.collection.drop()
+Book.collection.drop()
+Chapter.collection.drop()
 
 // const books = [
 //     {
@@ -27,25 +29,60 @@ Event.collection.drop()
 
 // ]
 
-const events = [
+// const events = [
+//     {
+//         name: "Presentación del libro",
+//         place: "FNAC Callao",
+//         author: {
+//             name: 'Jorge Martín',
+//             gender: "Masculino",
+//             username: "jorgem",
+//             password: "jorge1234"
+
+//         },
+//         capacity: 10,
+
+//     },
+
+// ]
+// const chapters = [
+//     {
+//         title: "Capítulo 1",
+//         resume: "FNAC Callao",
+//         text: 'djflasjñdflajsdflkasjdfñlkajsdfñlkajñflkasjdñlfksdjñafjkñas',
+//         comments: [], 
+//         book: {title: "Aventuras divertidas",
+//         genre: "Novela negra",
+//         resume: "Un libro muy divertido",
+//         chapters: [],
+//         author: {
+//             name: 'Jorge Martín',
+//             gender: "Masculino",
+//             username: "jorgem",
+//             password: "jorge1234"
+
+//             }
+//         }
+//     },
+
+// ]
+
+const chapters = [
     {
-        name: "Presentación del libro",
-        place: "FNAC Callao",
-        author: {
-            name: 'Jorge Martín',
-            gender: "Masculino",
-            username: "jorgem",
-            password: "jorge1234"
-
-        },
-        capacity: 10,
-
+        title: "Capítulo 1",
+        resume: "FNAC Callao",
+        text: 'djflasjñdflajsdflkasjdfñlkajsdfñlkajñflkasjdñlfksdjñafjkñas',
+        comments: [],
+        book: {
+            title: "Aventuras divertidas",
+            genre: "Novela negra",
+            resume: "Un libro muy divertido",
+        }
     },
 
 ]
-
-Promise.all(events.map(event => User.create(event.author).then(author => author.name)))
-    .then(() => events.map(event => User.findOne({ name: event.author.name }).then(author => Object.assign({}, event, { author: author._id }))))
-    .then(findAuthors => Promise.all(findAuthors).then(events => events.map(event => Event.create(event))))
-    .then(savedEvents => Promise.all(savedEvents).then(events => events.forEach(event => console.log(`Evento ${event.name} creado`))).then(() => mongoose.connection.close()))
+Promise.all(chapters.map(chapter => Book.create(chapter.book).then(book => book.title)))
+    .then(() => chapters.map(chapter => Book.findOne({ title: chapter.book.title }).then(book => Object.assign({}, chapter, { book: book._id }))))
+    .then(findBooks => Promise.all(findBooks).then(chapters => chapters.map(chapter => Chapter.create(chapter))))
+    .then(savedChapters => Promise.all(savedChapters).then(chapters => chapters.forEach(chapter => console.log(`Capítulo ${chapter.title} creado`))).then(() => mongoose.connection.close()))
     .catch(error => console.log('Error: ', error))
