@@ -3,7 +3,7 @@ import Credentials from "../../../../credential"
 import Maps from './../../Maps/drawMaps'
 import EventService from "../../../../service/event.service"
 import EventCard from './event-card'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { Component } from 'react';
 
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${Credentials.mapsKey}`;

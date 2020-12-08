@@ -1,4 +1,4 @@
-import { Col, Card, ButtonGroup } from 'react-bootstrap'
+import { Card, ButtonGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import './event-card.css'

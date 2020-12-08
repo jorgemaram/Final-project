@@ -55,7 +55,7 @@ class Profile extends Component {
                 <Row>
                     <Col md={6}>
 
-                        <img src={this.state.user.image} alt="profile-image"></img>
+                        <img src={this.state.user.image} alt="profile"></img>
 
                     </Col>
 

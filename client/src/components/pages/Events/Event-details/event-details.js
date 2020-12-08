@@ -55,7 +55,8 @@ class EventDetails extends Component {
                                     googleMapURL={mapURL}
                                     containerElement={<div style={{ height: "400px" }} />}
                                     mapElement={<div style={{ height: "100%" }} />}
-                                    loadingElement={<p>Cargando</p>}
+                                loadingElement={<p>Cargando</p>}
+                                     {...this.state.event}
                                 />
                             <h3>Detalles</h3>
                    

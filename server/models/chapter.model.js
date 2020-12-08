@@ -17,7 +17,7 @@ const chapterSchema = new Schema({
     text: {
         type: String,
         required: true
-    }
+    },
 
     comments: {
         type: [],

@@ -24,6 +24,14 @@ const eventSchema = new Schema({
         required: true,
     },
 
+    latitude: {
+        type: String,
+    },
+
+    longitude: {
+        type: String
+    },
+
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

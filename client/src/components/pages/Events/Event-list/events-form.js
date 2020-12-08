@@ -12,6 +12,8 @@ class EventForm extends Component {
             place: '',
             capacity: '',
             date: '',
+            latitude: '',
+            longitude:'',
             author: this.props.loggedUser._id
         }
         this.eventService = new EventService()
@@ -52,6 +54,10 @@ class EventForm extends Component {
                         <Form.Group controlId="place">
                             <Form.Label>Lugar de celebración</Form.Label>
                             <Form.Control type="text" name="place" value={this.state.place} onChange={this.handleInputChange} />
+                            <Form.Label>Latitud</Form.Label>
+                            <Form.Control type="text" name="latitude" value={this.state.latitude} onChange={this.handleInputChange} />
+                            <Form.Label>Longitud</Form.Label>
+                            <Form.Control type="text" name="longitude" value={this.state.longitude} onChange={this.handleInputChange} />
                         </Form.Group>
                         <Form.Group controlId="capacity">
                             <Form.Label>Aforo</Form.Label>
