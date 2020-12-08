@@ -18,15 +18,14 @@ class BookForm extends Component {
 
     componentDidMount = () => {
 
-
         const book_id = this.props.match.params.book_id
 
         this.booksService
             .getBook(book_id)
-            .then(res => {
-                this.setState({ book: res.data })
-            console.log(this.state)
-            })
+            // .then(res => {
+            //     this.setState({ book: res.data })
+            //     console.log(book)
+            // })
             .catch(err => console.log(err))
     }
 
@@ -78,7 +77,7 @@ class BookForm extends Component {
                         </Form.Group>
                         <Form.Group controlId="image">
                             <Form.Label>Imagen (URL)</Form.Label>
-                            <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
+                            <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange}/>
                         </Form.Group>
                         <Button variant="dark" type="submit">Edita tu libro</Button>
                     </Form>

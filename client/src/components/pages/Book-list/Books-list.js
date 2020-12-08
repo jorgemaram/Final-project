@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Button, Modal } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 
 import BooksService from '../../../service/book.service'
 import BookCard from './Book-card'
@@ -17,7 +17,6 @@ class BookList extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.state.books)
         this.refreshBooks()
     }
 
@@ -35,14 +34,10 @@ class BookList extends Component {
                 <Container>
 
                     <h1>Listado de libros</h1>
-
-                    {/* {this.props.loggedUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm">Nuevo libro</Button>} */}
-
                     <Row>
                         {this.state.books.map(elm => <BookCard key={elm._id} {...elm}  />)}
                     </Row>
-
-                    
+                   
                 </Container>
             </>
         )

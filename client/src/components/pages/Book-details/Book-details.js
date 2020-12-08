@@ -21,13 +21,16 @@ class BookDetails extends Component {
 
     componentDidMount = () => {
 
-
         const book_id = this.props.match.params.book_id
 
         this.bookService
             .getBook(book_id)
-            .then(res => this.setState({ book: res.data }))
+            .then(res => {
+                this.setState({ book: res.data })
+                console.log(this.state.book)
+                })
             .catch(err => console.log(err))
+
     }
 
     deleteThisBook = () => {
@@ -39,6 +42,18 @@ class BookDetails extends Component {
             .then(res => this.props.history.push('/libros'))
             .catch(err => console.log(err))
         
+    }
+
+    newChapter = () => {
+
+        const book_id = this.props.match.params.book_id
+        console.log(this.props)
+
+        this.bookService
+            .getBook(book_id)
+            .then(res => this.props.history.push(`/libros/${this.props._id}/nuevo-capitulo`))
+            .catch(err => console.log(err))
+
     }
 
     render() {
@@ -56,10 +71,17 @@ class BookDetails extends Component {
                             <p>{this.state.book.resume}</p>
                             <hr />
                             <p>Género: {this.state.book.genre}</p>
+                            <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>
                             <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
                             <Button onClick={() => this.deleteThisBook()} className="btn btn-sm btn-danger">Borrar</Button>
                         </Col>
                         <Col md={4}>
+                            <h3>Lista de capítulos</h3>
+                            {/* {this.state.book.chapters.map} */}
+                            <p>Capítulo 1</p>
+                            <p>Capítulo 2</p>
+                            <p>Capítulo 3</p>
+                            <p>Capítulo 4</p>
                         </Col>
                     </Row>
                 </Container>
