@@ -30,8 +30,17 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-    }
-}, {
+    },
+
+    favoriteBooks: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Books'
+    }],
+
+
+},
+    
+    {
     timestamps: true
 })
 

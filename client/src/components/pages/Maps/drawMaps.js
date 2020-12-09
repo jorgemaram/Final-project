@@ -15,8 +15,7 @@ class Maps extends Component {
                 latitude:"",
             }
         }
-        console.log(props.latitude)
-        console.log(props.longitude)
+        console.log(props)
         this.eventService = new EventService()
 
     }

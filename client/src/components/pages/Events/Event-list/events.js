@@ -1,6 +1,6 @@
 import { Container, Row, Col} from 'react-bootstrap'
 import Credentials from "../../../../credential"
-import Maps from './../../Maps/drawMaps'
+import MapContainer from './../../Maps/drawAllMaps'
 import EventService from "../../../../service/event.service"
 import EventCard from './event-card'
 // import { Link } from 'react-router-dom'
@@ -46,11 +46,12 @@ class Events extends Component {
                     </Row>
                     <Row>
                         <Col md={6}>
-                            <Maps
+                            <MapContainer
                                 googleMapURL={mapURL}
                                 containerElement={<div style={{ height: "400px" }} />}
                                 mapElement={<div style={{ height: "100%" }} />}
                                 loadingElement={<p>Cargando</p>}
+                                {...this.state.event}
                             />
                         </Col>
     
@@ -59,9 +60,7 @@ class Events extends Component {
                                 <h3>Próximos eventos</h3>
                                 <hr></hr>
                                 {this.state.events.map(elm => <EventCard key={elm._id} {...elm} />)}
-                                {/* <Link to=`/eventos/${:event_id}`>
-                                <p>Más información del evento</p>
-                            </Link> */}
+
                             </ul>
                         </Col>
                     </Row>
