@@ -7,7 +7,7 @@ const Footer = () => (
     <Navbar className="footer" bg="light" expand="lg">
         <Navbar.Brand>
 
-                <Nav.Link as="div" className="footer-text">Meraki_</Nav.Link>
+                <Nav.Link as="div" className="footer-text">Codelance_</Nav.Link>
        
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
