@@ -19,7 +19,7 @@ class BookDetails extends Component {
             book: [],
             favoritesBook: this.props.loggedUser ? this.props.loggedUser.favoriteBooks : [],
         }
-        
+
         this.bookService = new BooksService()
         this.authService = new AuthService()
     }
@@ -60,16 +60,12 @@ class BookDetails extends Component {
 
     saveFav = (bookID) => {
 
-        const favoriteBooks = [...this.props.loggedUser.favoriteBooks]
+        const favoriteBook = this.props.loggedUser.favoriteBooks
 
-        favoriteBooks.push(bookID)
-
-        const updatedFavourites = [...favoriteBooks]
-
-        const updateUser = { ...this.props.loggedUser, favoriteBooks: updatedFavourites }
+        favoriteBook.push(bookID)
 
         this.authService
-            .editUser(this.props.loggedInUser._id, updateUser)
+            .editUser(this.props.loggedUser._id, { favoriteBooks: favoriteBook})
             .then((response) => { this.props.setTheUser(response.data) })
             .catch(err => console.log(err))
     }
@@ -92,8 +88,13 @@ class BookDetails extends Component {
                             <p>Género: {this.state.book.genre}</p>
                             <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>
                             <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
+                            {
+                                this.props.loggedUser && <Button onClick={() => this.saveFav(this.state.book._id)} >Añadir a favoritos</Button>
+                                    
+                            }
                             <Button onClick={() => this.deleteThisBook()} className="btn btn-sm btn-danger">Borrar</Button>
-                            <Button onClick={() => this.saveFav(this.state.book._id)} >Añadir a favoritos</Button>
+  
+                         
                         </Col>
                         <Col md={4}>
                             <h3>Lista de capítulos</h3>

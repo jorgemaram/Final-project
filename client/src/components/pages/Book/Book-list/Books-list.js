@@ -35,7 +35,12 @@ class BookList extends Component {
 
                     <h1>Listado de libros</h1>
                     <Row>
-                        {this.state.books.map(elm => <BookCard key={elm._id} {...elm}  />)}
+                        {this.state.books.map(elm =>
+                        <BookCard
+                            key={elm._id}
+                            {...elm} 
+                            
+                        />)}
                     </Row>
                    
                 </Container>

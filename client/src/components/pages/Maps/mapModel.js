@@ -28,15 +28,9 @@ class allMaps extends Component {
             <>
 
                 <GoogleMap
-                    defaultZoom={15}
-                    defaultCenter={{ lat: parseFloat(this.state.event.latitude), lng: parseFloat(this.state.event.longitude) }}
+                    defaultZoom={12}
+                    defaultCenter={{ lat: 40.428637831327386, lng: - 3.6969483107523127, }}
                 />
-
-                <Marker
-                    position={{ lat: parseFloat(this.props.latitude), lng: parseFloat(this.props.longitude) }}
-                    name={this.props.name}
-                />
-
 
             </>
         )

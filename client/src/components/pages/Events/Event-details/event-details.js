@@ -4,7 +4,6 @@ import Maps from '../../Maps/drawMaps'
 import Credentials from "../../../../credential"
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import drawMaps from '../../Maps/drawMaps'
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${Credentials.mapsKey}`;
 
 
@@ -30,21 +29,7 @@ class EventDetails extends Component {
         
     }
         
-        
-    // drawMaps() {
-        
-    //         <Maps
-    //             googleMapURL={mapURL}
-    //             containerElement={<div style={{ height: "400px" }} />}
-    //             mapElement={<div style={{ height: "100%" }} />}
-    //             loadingElement={<p>Cargando</p>}
-    //             {...this.state.event}
-    //         />
-    // }
-    
-
-        
-        deleteEvent = () => {
+    deleteEvent = () => {
 
         const event_id = this.props.match.params.event_id
 
@@ -55,6 +40,7 @@ class EventDetails extends Component {
 
     }
 
+    
     render() {
 
         return (
@@ -65,13 +51,19 @@ class EventDetails extends Component {
                 <Container className="event-details">
                     <Row>
                         <Col md={{ span: 6, offset: 1 }} >
+                            
+                            {this.state.event.map(elm =>
+                                
                                 <Maps
                                     googleMapURL={mapURL}
                                     containerElement={<div style={{ height: "400px" }} />}
                                     mapElement={<div style={{ height: "100%" }} />}
                                     loadingElement={<p>Cargando</p>}
-                                     {...this.state.event}
+                                    {...elm}
                                 />
+                                
+                            )}
+
                             <h3>Detalles</h3>
                    
                             <p>{this.state.event.name}</p>

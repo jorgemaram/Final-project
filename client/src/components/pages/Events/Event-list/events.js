@@ -1,6 +1,7 @@
 import { Container, Row, Col} from 'react-bootstrap'
 import Credentials from "../../../../credential"
-import MapContainer from './../../Maps/drawAllMaps'
+import MapContainer from './../../Maps/mapModel'
+import MapMarker from './../../Maps/drawAllMaps'
 import EventService from "../../../../service/event.service"
 import EventCard from './event-card'
 // import { Link } from 'react-router-dom'
@@ -39,20 +40,30 @@ class Events extends Component {
 
             <>
                 <Container>
-                    <Row>
-                        <Col lg={6}>
                             <h1>Listado de eventos</h1>
-                        </Col>
-                    </Row>
+                  
                     <Row>
                         <Col md={6}>
-                            <MapContainer
+                            
+
+                            {/* <MapContainer
                                 googleMapURL={mapURL}
                                 containerElement={<div style={{ height: "400px" }} />}
                                 mapElement={<div style={{ height: "100%" }} />}
                                 loadingElement={<p>Cargando</p>}
-                                {...this.state.event}
-                            />
+                            /> */}
+
+
+                            {this.state.events.map(elm =>
+                                <MapMarker
+                                    googleMapURL={mapURL}
+                                    containerElement={<div style={{ height: "400px" }} />}
+                                    mapElement={<div style={{ height: "100%" }} />}
+                                    loadingElement={<p>Cargando</p>}
+                                    {...elm} 
+                                />
+                            )}
+                           
                         </Col>
     
                         <Col md={6}>
