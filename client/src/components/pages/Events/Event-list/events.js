@@ -46,12 +46,12 @@ class Events extends Component {
                         <Col md={6}>
                             
 
-                            {/* <MapContainer
+                            <MapContainer
                                 googleMapURL={mapURL}
                                 containerElement={<div style={{ height: "400px" }} />}
                                 mapElement={<div style={{ height: "100%" }} />}
                                 loadingElement={<p>Cargando</p>}
-                            /> */}
+                            />
 
 
                             {this.state.events.map(elm =>

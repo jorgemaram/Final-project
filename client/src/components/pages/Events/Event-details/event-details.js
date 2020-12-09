@@ -14,20 +14,35 @@ class EventDetails extends Component {
         this.state = {
             event: []
         }
-        this.eventService = new EventService()
-    }
 
+        this.eventService = new EventService()       
+   
+
+    }
+    
+    
     componentDidMount = () => {
 
+        this.refreshEvents()
+
+    }
+    
+    refreshEvents = () => {
 
         const event_id = this.props.match.params.event_id
-
         this.eventService
             .getOneEvent(event_id)
-            .then(res => this.setState({ event: res.data }))
+            .then(res => {
+
+                const eventInfo = this.state.event
+                eventInfo.push(res.data)
+                this.setState({ event: eventInfo })
+
+
+            })
             .catch(err => console.log(err))
-        
     }
+
         
     deleteEvent = () => {
 
@@ -83,3 +98,18 @@ class EventDetails extends Component {
 }
 
 export default EventDetails
+
+
+// {
+//     this.state.event.map(elm =>
+
+//         <Maps
+//             googleMapURL={mapURL}
+//             containerElement={<div style={{ height: "400px" }} />}
+//             mapElement={<div style={{ height: "100%" }} />}
+//             loadingElement={<p>Cargando</p>}
+//             {...elm}
+//         />
+
+//     )
+// }
