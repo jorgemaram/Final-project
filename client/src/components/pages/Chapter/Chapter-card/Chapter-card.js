@@ -1,10 +1,12 @@
-import './Chapter-card.css'
+// import './Chapter-card.css'
 
-const ChapterCard = props => {
+// const ChapterCard = props => {
 
-    return (
-        <h1>Hola<h1>
-    )
-}
+//     return (
+//         <>
+//             <h1>Hola<h1>
+              
+//     )
+// }
 
-export default ChapterCard
+// export default ChapterCard

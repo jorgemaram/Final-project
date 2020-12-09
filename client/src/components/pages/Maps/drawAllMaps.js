@@ -44,8 +44,3 @@ class allMaps extends Component {
 }
 
 export default withScriptjs(withGoogleMap(allMaps))
-
-
-
-
-
