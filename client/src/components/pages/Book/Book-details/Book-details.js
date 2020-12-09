@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import BooksService from '../../../../service/book.service'
 
 import './Book-details.css'
-import ChapterCard '../../Chapter/Chapter-Card/Chapter-card'
+// import ChapterCard from "../"
 
 //si ponemos loader, irá aquí 
 
