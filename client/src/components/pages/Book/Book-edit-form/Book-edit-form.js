@@ -37,7 +37,7 @@ class BookForm extends Component {
 
         this.bookService
 
-            .editBook(book_id, this.state.book,)
+            .editBook(book_id, this.state.book)
             .then(res => {
                 console.log(this.state.book)
                 this.props.history.push('/libros')

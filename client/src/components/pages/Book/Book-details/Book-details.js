@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import BooksService from '../../../../service/book.service'
-import AuthService from '../../../../service/auth.service'
 
 import './Book-details.css'
+import ChapterCard '../../Chapter/Chapter-Card/Chapter-card'
 
 //si ponemos loader, irá aquí 
 
@@ -12,16 +12,12 @@ import { Link } from 'react-router-dom'
 
 class BookDetails extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state =
-        {
-            book: [],
-            favoritesBook: this.props.loggedUser ? this.props.loggedUser.favoriteBooks : [],
+    constructor() {
+        super()
+        this.state = {
+            book: []
         }
-
         this.bookService = new BooksService()
-        this.authService = new AuthService()
     }
 
     componentDidMount = () => {
@@ -30,7 +26,10 @@ class BookDetails extends Component {
 
         this.bookService
             .getBook(book_id)
-            .then(res => {this.setState({ book: res.data })})
+            .then(res => {
+                this.setState({ book: res.data })
+                console.log(this.state.book)
+                })
             .catch(err => console.log(err))
 
     }
@@ -53,23 +52,10 @@ class BookDetails extends Component {
 
         this.bookService
             .getBook(book_id)
-            .then(res => this.props.history.push(`/libros/${book_id}/nuevo-capitulo`))
+            .then(res => this.props.history.push(`/libros/nuevo-capitulo/${book_id}/`))
             .catch(err => console.log(err))
 
     }
-
-    saveFav = (bookID) => {
-
-        const favoriteBook = this.props.loggedUser.favoriteBooks
-
-        favoriteBook.push(bookID)
-
-        this.authService
-            .editUser(this.props.loggedUser._id, { favoriteBooks: favoriteBook})
-            .then((response) => { this.props.setTheUser(response.data) })
-            .catch(err => console.log(err))
-    }
-
 
     render() {
 
@@ -88,21 +74,12 @@ class BookDetails extends Component {
                             <p>Género: {this.state.book.genre}</p>
                             <Button onClick={() => this.newChapter()} className="btn btn-sm btn-primary">Nuevo capítulo</Button>
                             <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
-                            {
-                                this.props.loggedUser && <Button onClick={() => this.saveFav(this.state.book._id)} >Añadir a favoritos</Button>
-                                    
-                            }
                             <Button onClick={() => this.deleteThisBook()} className="btn btn-sm btn-danger">Borrar</Button>
-  
-                         
                         </Col>
                         <Col md={4}>
                             <h3>Lista de capítulos</h3>
-                            {/* {this.state.book.chapters.map} */}
                             <p>Capítulo 1</p>
-                            <p>Capítulo 2</p>
-                            <p>Capítulo 3</p>
-                            <p>Capítulo 4</p>
+                            {this.state.book.chapters.map(elm => <ChapterCard key={elm._id} {...elm}  />)}
                         </Col>
                     </Row>
                 </Container>
@@ -113,8 +90,3 @@ class BookDetails extends Component {
 }
 
 export default BookDetails
-
-
-
-
-
