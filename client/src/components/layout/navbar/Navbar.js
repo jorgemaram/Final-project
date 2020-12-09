@@ -26,7 +26,7 @@ class navbar extends Component {
             <Navbar bg="light" expand="lg">
                 <Navbar.Brand>
                     <Link to='/'>
-                        <Nav.Link as="div" id="basic-nav-dropdown">Meraki_</Nav.Link>
+                        <Nav.Link as="div" id="basic-nav-dropdown">Codelance_</Nav.Link>
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -43,7 +43,7 @@ class navbar extends Component {
                                 </Link>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/eventos">Eventos</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Eventos</NavDropdown.Item>
 
                         </NavDropdown>
 
@@ -66,7 +66,9 @@ class navbar extends Component {
                                     </Link>
                                 </>
                         }
-    
+                                    <Link to="/eventos">
+                                        <Nav.Link as="div">Eventos</Nav.Link>
+                                    </Link>
 
                         <Link to="/perfil">
                             <Nav.Link as="div">Hola, {this.props.loggedUser ? this.props.loggedUser.username : 'invitado'}</Nav.Link>
