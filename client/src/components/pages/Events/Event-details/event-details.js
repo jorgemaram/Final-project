@@ -4,6 +4,7 @@ import Maps from '../../Maps/drawMaps'
 import Credentials from "../../../../credential"
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import drawMaps from '../../Maps/drawMaps'
 const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${Credentials.mapsKey}`;
 
 
@@ -26,11 +27,24 @@ class EventDetails extends Component {
             .getOneEvent(event_id)
             .then(res => this.setState({ event: res.data }))
             .catch(err => console.log(err))
+        
     }
-
-
+        
+        
+    // drawMaps() {
+        
+    //         <Maps
+    //             googleMapURL={mapURL}
+    //             containerElement={<div style={{ height: "400px" }} />}
+    //             mapElement={<div style={{ height: "100%" }} />}
+    //             loadingElement={<p>Cargando</p>}
+    //             {...this.state.event}
+    //         />
+    // }
     
-    deleteEvent = () => {
+
+        
+        deleteEvent = () => {
 
         const event_id = this.props.match.params.event_id
 
@@ -55,7 +69,7 @@ class EventDetails extends Component {
                                     googleMapURL={mapURL}
                                     containerElement={<div style={{ height: "400px" }} />}
                                     mapElement={<div style={{ height: "100%" }} />}
-                                loadingElement={<p>Cargando</p>}
+                                    loadingElement={<p>Cargando</p>}
                                      {...this.state.event}
                                 />
                             <h3>Detalles</h3>
@@ -63,7 +77,7 @@ class EventDetails extends Component {
                             <p>{this.state.event.name}</p>
                             <hr />
                             <p>Descripción: {this.state.event.description}</p>
-                            <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
+                            <Link to="/eventos" className="btn btn-sm btn-dark">Volver</Link>
                             <Button onClick={() => this.deleteEvent()} className="btn btn-sm btn-danger">Borrar</Button>
                         </Col>
                         <Col md={4}>
