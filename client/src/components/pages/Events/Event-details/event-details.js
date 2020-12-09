@@ -26,10 +26,9 @@ class EventDetails extends Component {
             .getOneEvent(event_id)
             .then(res => this.setState({ event: res.data }))
             .catch(err => console.log(err))
+        
     }
-
-
-    
+        
     deleteEvent = () => {
 
         const event_id = this.props.match.params.event_id
@@ -41,6 +40,7 @@ class EventDetails extends Component {
 
     }
 
+    
     render() {
 
         return (
@@ -51,19 +51,25 @@ class EventDetails extends Component {
                 <Container className="event-details">
                     <Row>
                         <Col md={{ span: 6, offset: 1 }} >
+                            
+                            {this.state.event.map(elm =>
+                                
                                 <Maps
                                     googleMapURL={mapURL}
                                     containerElement={<div style={{ height: "400px" }} />}
                                     mapElement={<div style={{ height: "100%" }} />}
-                                loadingElement={<p>Cargando</p>}
-                                     {...this.state.event}
+                                    loadingElement={<p>Cargando</p>}
+                                    {...elm}
                                 />
+                                
+                            )}
+
                             <h3>Detalles</h3>
                    
                             <p>{this.state.event.name}</p>
                             <hr />
                             <p>Descripción: {this.state.event.description}</p>
-                            <Link to="/libros" className="btn btn-sm btn-dark">Volver</Link>
+                            <Link to="/eventos" className="btn btn-sm btn-dark">Volver</Link>
                             <Button onClick={() => this.deleteEvent()} className="btn btn-sm btn-danger">Borrar</Button>
                         </Col>
                         <Col md={4}>
